@@ -14,7 +14,7 @@
     "start": "node app.js"
   },
   "engines": {
-    "node": "5.1.*"
+    "node": "6.3.*"
   },
   "dependencies": {
     "att-dhs": "2.0.0",
