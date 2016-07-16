@@ -130,7 +130,6 @@ app.use(function (err, req, res, next) {
 	});
 });
 
-var server = http.createServer(app );
-server.listen( port, host, function() {
-	console.log('HTTPS server listening on host: ', server.address().address, ' at port ' , server.address().port);
+app.listen( port, host, function() {
+	console.log('server listening on port ' , port);
 });
