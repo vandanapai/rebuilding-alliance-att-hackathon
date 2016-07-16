@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 					var currLegislator = legislators.results[i];
 
-					$('#membersCongressList').append("<div id=" + currLegislator.title + " " + "data-phone=" + currLegislator.phone + " " + "data-userID=" + currLegislator.bioguide_id + ">" + "<h3 class='legislator-name'>" + currLegislator.first_name + " " + currLegislator.last_name + "</h3></div>");
+					$('#membersCongressList').append("<div class='legislator' id=" + currLegislator.title + " " + "data-phone=" + currLegislator.phone + " " + "data-userID=" + currLegislator.bioguide_id + ">" + "<h3 class='legislator-name'>" + currLegislator.first_name + " " + currLegislator.last_name + "</h3></div>");
 
 					}
 
@@ -29,13 +29,20 @@ $(document).ready(function() {
 		});
 	};
 	
-	$('.legislator-name').on("click", function () {
-		console.log('legislator clicked');
-		callLegislator();
+	$(document).on('click','.legislator',function() {
+	    callLegislator($(this).attr("data-phone"));
 	});
 
-	function callLegislator(phone) {
+	function callLegislator(callee) {
 
+		  // Dial the number or account id
+		  //
+		  phone.dial({
+		    destination: phone.cleanPhoneNumber(callee),
+		    mediaType: 'video',
+		    localMedia: vidLocal,
+		    remoteMedia: vidRemote
+		  });
 	}
 
 
