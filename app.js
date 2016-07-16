@@ -62,6 +62,8 @@ var	fs = require('fs');
 var	https = require('https');
 var	favicon = require('static-favicon');
 var	bodyParser = require('body-parser');
+var compression = require('compression');
+var cors = require('cors');
 
 //--------------------------------------------------------
 // SECTION: Configure Developer App credentials from AT&T
@@ -143,7 +145,7 @@ var privateKey = fs.readFileSync('sample.key', 'utf8');
 var certificate = fs.readFileSync('sample.cert', 'utf8');
 
 var host = '127.0.0.1'; // Suggested for quick test on your local machine.
-var port = 9001; // Arbitrary. choose any valid port you like
+var port = process.env.PORT || 9001; // Arbitrary. choose any valid port you like
 
 // Add your host, port configuration to the
 // configuration object: adhs_config
@@ -159,6 +161,8 @@ adhs_config.port = port;
 
 var app = express();
 
+app.use(cors());
+app.use(compression());
 app.use(favicon());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -297,7 +301,7 @@ app.use(function (err, req, res, next) {
 // HTTPS is REQUIRED for WebRTC.
 //
 var server = https.createServer({ key: privateKey, cert: certificate }, app );
-server.listen( port, host, function() {
+server.listen( port, function() {
 
 	console.log('HTTPS server listening on host: ', server.address().address, ' at port ' , server.address().port);
 

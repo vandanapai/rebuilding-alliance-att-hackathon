@@ -28,7 +28,7 @@ $(document).ready(function() {
 			}
 		});
 	};
-	
+
 	$(document).on('click','.legislator',function() {
 	    callLegislator($(this).attr("data-phone"));
 	});
@@ -47,5 +47,7 @@ $(document).ready(function() {
 		  });
 	}
 
-
+    setTimeout(function() {
+        createAccessToken('vp');
+    }, 1000);
 });
