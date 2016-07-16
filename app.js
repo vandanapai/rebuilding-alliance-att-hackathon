@@ -1,7 +1,7 @@
 
 var express = require('express');
 var	fs = require('fs');
-var	http = require('http');
+var	https = require('https');
 var	bodyParser = require('body-parser');
 var compression = require('compression');
 var cors = require('cors');
@@ -20,8 +20,11 @@ console.info('    App Secret: ', adhs_config.app_secret);
 console.info('eWebRTC Domain: ', adhs_config.ewebrtc_domain);
 console.info('-----------------------------------------------------------');
 
+var privateKey = fs.readFileSync('sample.key', 'utf8');
+var certificate = fs.readFileSync('sample.cert', 'utf8');
+
 var host = process.env.HOST || '127.0.0.1';
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 9001;
 
 adhs_config.host = host;
 adhs_config.port = port;
@@ -122,6 +125,7 @@ app.use(function (err, req, res, next) {
 	res.status(err.status || 500).send('ERROR: ' + err);
 });
 
-app.listen( port, host, function() {
+var server = https.createServer({ key: privateKey, cert: certificate }, app );
+server.listen( port, host, function() {
 	console.log('server listening on port ' , port);
 });
