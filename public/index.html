@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; -->
+
+	<!-- any other head content must come *after* the above tags -->
+	<meta name="description" content="AT&amp;T Shape 2016 - Enhanced WebRTC Bootstrap Session Demo">
+	<meta name="author" content="DRT-SDK, CP&amp;TS">
+
+	<link rel="icon" href="https://developer.att.com/static-assets/images/favicon.ico">
+
+	<link rel="stylesheet" href="css/gridism.css">
+	<link rel="stylesheet" href="css/normalize-gridism.css">
+	<link rel="stylesheet" href="css/app-gridism.css">
+
+	<title>Advocate - Calling Member of Congress</title>
+</head>
+
+<body>
+
+<h1> Advocate</h1>
+
+	<div class="grid">
+
+		<div class="unit half">
+
+			<h5>Login</h5>
+			<div>
+				<input type="text" id="txtCaller" value="" placeholder="Enter an alphanumeric string">
+				<span>@</span>
+				<span id="spnAIdDomain">Loading...</span>
+			</div>
+
+			<div>
+				<button id="btnLogin" class="button" hidden>Login</button>
+				<button id="btnLogout" class="button" hidden>Logout</button>
+			</div>
+
+			<form id="userInformation">
+				<h5> Your Location</h5>
+
+  					<input type="text" id="userAddress" placeholder ="Your Address">
+ 					<input type="submit" id="btnAddress" value="Submit">
+			</form>
+
+			<div id="congressList">
+
+			</div>
+
+
+
+			<h5>Call</h5>
+			<div>
+				<input type="text" id="txtCallee" placeholder="Phone Number or Account ID to Call" hidden>
+				<span id="calleeDomain" hidden>
+					<span>@</span>
+					<input type="text" id="txtCalleeDomain" placeholder="Loading..." >
+				</span>
+			</div>
+
+
+
+
+			<div>
+				<button id="btnCall" class="button" hidden>Call</button>
+				<button id="btnHangup" class="button" hidden>Hangup</button>
+			</div>
+
+			<div>
+				<button id="btnAnswer" class="button" hidden>Answer</button>
+			</div>
+
+			<div>
+				<button id="btnHold" class="button" hidden>Hold</button>
+				<button id="btnResume" class="button" hidden>Resume</button>
+			</div>
+
+			<div>
+				<button id="btnMute" class="button" hidden>Mute</button>
+				<button id="btnUnmute" class="button" hidden>Unmute</button>
+			</div>
+
+		</div>
+
+		<div class="unit half">
+
+			<div class="grid">
+				<div class="unit half">
+					<h5>Remote</h5>
+					<video id="vidRemote" width="256" height="256"></video>
+				</div>
+				<div class="unit half">
+					<h5>Local</h5>
+					<video id="vidLocal" width="128" height="128"></video>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="fixed bottom">
+
+		<div class="unit whole">
+
+			<h5>Status</h5>
+			<div>
+				<span id="spnStatus" class="info">Waiting for Login...</span>
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<script type="text/javascript" src="js/ewebrtc-sdk.min.js"></script>
+	<script type="text/javascript" src="js/accid-utils.js"></script>
+	<script type="text/javascript" src="js/accid-check-browser.js"></script>
+	<script type="text/javascript" src="js/accid-setup-phone.js"></script>
+	<script type="text/javascript" src="js/accid-make-call.js"></script>
+	<script type="text/javascript" src="js/accid-answer-call.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+
+</body>
+
+</html>
+
