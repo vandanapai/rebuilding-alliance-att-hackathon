@@ -14,11 +14,13 @@
     "start": "node app.js"
   },
   "engines": {
-    "node": "5.1.*"
+    "node": "6.3.*"
   },
   "dependencies": {
     "att-dhs": "2.0.0",
     "body-parser": "~1.0.0",
+    "compression": "^1.6.2",
+    "cors": "^2.7.1",
     "express": "~4.2.0",
     "google-geocoding": "^0.1.7",
     "hjs": "~0.0.6",
