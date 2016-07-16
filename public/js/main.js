@@ -41,6 +41,14 @@ $(document).ready(function() {
 	    
 	});
 
+	$(document).on('click','#msgLanguage',function() {
+	    getMessage($(this).attr("data-lang"));
+	    
+	});
+
+
+
+
 
 	function callLegislator(callee) {
 
@@ -58,16 +66,18 @@ $(document).ready(function() {
 
 	function getMessage (language){
 
-		var lang = "en";
+		if (language === undefined) {
+			language = "en";
+		};
 
 		$.ajax ({
 			type: "GET",
-			url: "/message?lang=" + lang,
+			url: "/message?lang=" + language,
 			cache: false,
 			success: function(results) {
 				console.log(results);
 				$('#messagePrompt').show();
-				$('#messagePrompt').append("<div><p>" + results.message + "</p></div>");
+				$('#messageText').html("<div><p>" + results.message + "</p></div>");
 
 			}
 		});

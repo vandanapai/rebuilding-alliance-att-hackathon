@@ -30,6 +30,7 @@ h4 {
 h3 {
 	text-transform: none;
 	margin-bottom: 2em;
+	cursor: pointer;
 }
 span {
 	font-weight: 700;
@@ -47,7 +48,7 @@ input[type=text] {
     border: solid 1px red;
 }
 
-.button {
+.button, .button-small {
 	background-color: red;
 	padding: 12px 20px;
 	box-sizing: border-box;
@@ -57,7 +58,12 @@ input[type=text] {
 	text-transform: uppercase;
 	font-size: 12px;
 	letter-spacing: 2px;
+	margin-right: 10px;
 
+}
+
+.button-small {
+	padding: 5px;
 }
 
 .button:hover, .button:focus, .button:active {
@@ -95,4 +101,11 @@ input[type=text] {
 .districtContainer, .membersContainer {
 	float: left;
 	width: 50%;
+}
+
+
+
+p {
+	font-style: italic;
+	font-size: 14px;
 }
