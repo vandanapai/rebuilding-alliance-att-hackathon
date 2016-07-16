@@ -1,0 +1,27 @@
+{
+    "translator": {
+        "url": "https://gateway.watsonplatform.net/language-translation/api",
+        "password": "ZZTroZyse7j3",
+        "username": "d0f407e2-7d39-4485-92fe-1f18a4caf7b5"
+    },
+    "tone": {
+        "url": "https://gateway.watsonplatform.net/tone-analyzer/api",
+        "password": "jgpzpZBkrozY",
+        "username": "5ff7625e-8fd9-49c6-a7bb-a762b02987b6"
+    },
+    "relationships": {
+        "url": "https://gateway.watsonplatform.net/relationship-extraction-beta/api",
+        "sids": [
+            {
+                "sid": "ie-es-news",
+                "description": "information extraction from Spanish news"
+            },
+            {
+                "sid": "ie-en-news",
+                "description": "information extraction from English news"
+            }
+        ],
+        "password": "iLQGYGgdO8qm",
+        "username": "c12605fb-567c-428e-adf8-5258ee0238d0"
+    }
+}

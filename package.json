@@ -23,6 +23,7 @@
     "google-geocoding": "^0.1.7",
     "hjs": "~0.0.6",
     "static-favicon": "~1.0.0",
-    "sunlight-congress-api": "^0.3.1"
+    "sunlight-congress-api": "^0.3.1",
+    "watson-developer-cloud": "^1.12.2"
   }
 }

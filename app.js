@@ -9,11 +9,11 @@
  * invoking AT&T APIs.
  *
  * This app also serves at HTTPS Web Server and hosts the
- * HTML5/JS/CSS3 for the sample web app demonstrating 
+ * HTML5/JS/CSS3 for the sample web app demonstrating
  * 'Account Id' feature of 'Enhanced WebRTC API' from
  * AT&T Developer Program (https://developer.att.com)
  *
- * Similar server-side examples are available for Java, PHP, 
+ * Similar server-side examples are available for Java, PHP,
  * Ruby. To know more, check out:
  *	https://github.com/attdevsupport/WebRTC-SampleApp
  *
@@ -29,7 +29,7 @@
  * to configure here
  *
  *---------------------------------------------------------
- * This Sample server set-up shows the code needed to set 
+ * This Sample server set-up shows the code needed to set
  * up 2 routes by default.
  *---------------------------------------------------------
  *
@@ -41,8 +41,8 @@
  * (Endpoint URLs to create to Access Token etc.)
  *
  * 2. POST /tokens
- * Used by Web App client JavaScript code to create 
- * Access Token 
+ * Used by Web App client JavaScript code to create
+ * Access Token
  *
  * NOTE: If you want to set up custom routes, you can do it
  * by passing options to app.use('router', ...) method. For
@@ -74,7 +74,7 @@ var adhs_config = {};
 
 // -- DEVELOPER TODO --
 //
-// Update the following 3 lines with your own 
+// Update the following 3 lines with your own
 // App Key, App Secret and eWebRTC Domain values
 //
 // If you are using out-of-the-box configuration,
@@ -91,7 +91,7 @@ adhs_config.app_secret = 'af5gtgkiopv8bzlbmcpf6pvnytm9rklt';
 //
 adhs_config.ewebrtc_domain = 'attwebrtc.com';
 
-// NO need to change anything below unless you are 
+// NO need to change anything below unless you are
 // moving your app to production. If so, use 'prod'
 // in place of 'sandbox'. Sandbox key/secret cannot be
 // used for Production. Check developer.att.com
@@ -100,13 +100,13 @@ adhs_config.ewebrtc_domain = 'attwebrtc.com';
 
 adhs_config.api_env = 'sandbox';
 
-// Checking to see if you really did configure :) 
+// Checking to see if you really did configure :)
 // your app key, app secret etc.
 //
 if( '<your_app_key>' === adhs_config.app_key ||
-	 	'<your_app_secret>' === adhs_config.app_secret || 
-		'<your_ewebrtc_domain>' === adhs_config.ewebrtc_domain 
-		) { 
+	 	'<your_app_secret>' === adhs_config.app_secret ||
+		'<your_ewebrtc_domain>' === adhs_config.ewebrtc_domain
+		) {
 	console.error('Did you forget configuring app_key, app_secret, ewebrtc_domain?');
 	console.error('Exiting...');
 	process.exit(1);
@@ -129,7 +129,7 @@ console.info('-----------------------------------------------------------');
 // SSL certificate and private key.
 //
 // WARNING:
-// NEVER use self-generated SSL stuff anywhere else. If you 
+// NEVER use self-generated SSL stuff anywhere else. If you
 // do have your own SSL private key and certificate, try
 // using those.
 //
@@ -164,16 +164,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', express.static(__dirname + '/public'));
 
-app.use('/locate', function(req, res){   
-
+app.get('/locate', function(req, res) {
 
 	var google_geocoding = require('google-geocoding');
- 
+
 	google_geocoding.geocode(req.query.address, function(err, location) {
-	    if( err || !location) {
+	    if (err || !location)
+        {
 	        console.log('Error: ' + err);
 	        res.status(500).send(err);
-	    } else {
+	    }
+        else
+        {
 	        console.log('Latitude: ' + location.lat + ' ; Longitude: ' + location.lng);
 
 			var api = require("sunlight-congress-api");
@@ -184,11 +186,50 @@ app.use('/locate', function(req, res){
 			}
 
 			api.init("a72e271c2c704854b6359dba4b9e5485");
-
 			api.legislatorsLocate().filter("latitude", location.lat).filter("longitude", location.lng).call(success);
 	    }
 	});
 
+});
+
+app.get('/message', function(req, res) {
+
+    try
+    {
+        var message = "Hi, I am a constituent. Please call me back at your convenience." +
+            "My message is time sensitive. I am calling to ask you to attend " +
+            "a Congressional briefing on Sep.21st, International Peace Day, " +
+            "on my behalf ask your constituent. Children from Palestinian villages " +
+            "at risk of demolition in the West Bank will be presenting their 'Pinwheels for Peace'  . " +
+            "Please hear what peace means to them and then make two calls on my behalf " +
+            "to halt demolitions and press for due process to keep their homes and their villages standing.";
+
+        if (!req.query.lang || req.query.lang === 'en')
+        {
+            res.send({message: message, lang: 'en'});
+            return;
+        }
+
+        var translation = require('./translation');
+
+        translation(message, req.query.lang, function (err, result)
+        {
+            if (err)
+            {
+                console.log('error:', err);
+                res.status(500).send({error: err});
+            }
+            else
+            {
+                console.log(JSON.stringify(result, null, 2));
+                res.send({message: result.translations[0].translation, lang: req.query.lang});
+            }
+        })
+    }
+    catch (err)
+    {
+        res.status(500).send({error: err});
+    }
 });
 
 // ---------------------------------------------
@@ -206,9 +247,9 @@ adhs.use('router', {server: app}); // 2nd arg will change to {app: app} in next 
 // but not used in this app.
 //
 
-// If this option is not specified, logs will go 
+// If this option is not specified, logs will go
 // to console by default. If you want to use your own
-// custom logger object, it should provide special 
+// custom logger object, it should provide special
 // log methods as documented at https://npmjs.org/att-dhs
 //
 //
@@ -259,18 +300,17 @@ var server = https.createServer({ key: privateKey, cert: certificate }, app );
 server.listen( port, host, function() {
 
 	console.log('HTTPS server listening on host: ', server.address().address, ' at port ' , server.address().port);
-	
+
 	// NOTE 1:
 	// Use the following option if you also have Android or
 	// iOS clients in addition to Web App clients
 	//
 	// NOTE 2:
 	// Not fully tested yet.
-	// 
+	//
 	// adhs.use('websocket.eventchannel', {server: server});
 });
 
 //-----------------------------------------------------------
 // END: app.js
 //-----------------------------------------------------------
-
