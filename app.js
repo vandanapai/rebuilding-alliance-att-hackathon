@@ -21,7 +21,7 @@ console.info('eWebRTC Domain: ', adhs_config.ewebrtc_domain);
 console.info('-----------------------------------------------------------');
 
 var host = process.env.HOST || '127.0.0.1';
-var port = process.env.PORT || 9001;
+var port = process.env.PORT || 5000;
 
 adhs_config.host = host;
 adhs_config.port = port;
