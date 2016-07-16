@@ -25,13 +25,18 @@ $(document).ready(function() {
 					$('#membersCongressList').append("<div class='legislator' id=" + currLegislator.title + " " + "data-phone=" + currLegislator.phone + " " + "data-userID=" + currLegislator.bioguide_id + ">" + "<h3 class='legislator-name'>" + currLegislator.first_name + " " + currLegislator.last_name + "</h3></div>");
 
 					}
+					getMessage();
+
+				
 			}
 		});
 	};
 
 	$(document).on('click','.legislator',function() {
 	    callLegislator($(this).attr("data-phone"));
+	    
 	});
+
 
 	function callLegislator(callee) {
 
@@ -46,6 +51,25 @@ $(document).ready(function() {
 		    remoteMedia: vidRemote
 		  });
 	}
+
+	function getMessage (language){
+
+		var lang = "en";
+
+		$.ajax ({
+			type: "GET",
+			url: "/message?lang=" + lang,
+			cache: false,
+			success: function(results) {
+				console.log(results);
+				$('#messagePrompt').show();
+				$('#messagePrompt').append("<div><p>" + results.message + "</p></div>");
+
+			}
+		});
+	}
+
+
 
     setTimeout(function() {
         createAccessToken('vp');
