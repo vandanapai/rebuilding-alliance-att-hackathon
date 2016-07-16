@@ -20,11 +20,11 @@ $(document).ready(function() {
 
 					var currLegislator = legislators.results[i];
 
+					$('#congressResults').show();
+
 					$('#membersCongressList').append("<div class='legislator' id=" + currLegislator.title + " " + "data-phone=" + currLegislator.phone + " " + "data-userID=" + currLegislator.bioguide_id + ">" + "<h3 class='legislator-name'>" + currLegislator.first_name + " " + currLegislator.last_name + "</h3></div>");
 
 					}
-
-				$('#congressResultsPrompt').html("Select congress member to call");
 			}
 		});
 	};
