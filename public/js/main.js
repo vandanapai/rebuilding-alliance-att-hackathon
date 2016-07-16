@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+    setTimeout(function() {
+        createAccessToken("vp");
+    }, 1000);
+
 	$('#userInformation').submit(function (event) {
 		event.preventDefault();
 		var userAddress = $('#userAddress').val();

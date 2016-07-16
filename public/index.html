@@ -80,11 +80,9 @@
 
 			</div>
 
-
-
-
 			<h5 style="display:none">Call</h5>
-			<div>
+
+			<div style="display: none">
 				<input type="text" id="txtCallee" placeholder="Phone Number or Account ID to Call" hidden>
 				<span id="calleeDomain" hidden>
 					<span>@</span>
@@ -92,24 +90,21 @@
 				</span>
 			</div>
 
-
-
-
 			<div>
-				<button id="btnCall" class="button" hidden>Call</button>
+				<button id="btnCall" class="button" hidden style="display: none">Call</button>
 				<button id="btnHangup" class="button" hidden>Hangup</button>
 			</div>
 
-			<div>
+			<div style="display: none">
 				<button id="btnAnswer" class="button" hidden>Answer</button>
 			</div>
 
-			<div>
+			<div style="display: none">
 				<button id="btnHold" class="button" hidden>Hold</button>
 				<button id="btnResume" class="button" hidden>Resume</button>
 			</div>
 
-			<div>
+			<div style="display: none">
 				<button id="btnMute" class="button" hidden>Mute</button>
 				<button id="btnUnmute" class="button" hidden>Unmute</button>
 			</div>
@@ -118,7 +113,7 @@
 
 
 
-	<div class="fixed bottom">
+	<div class="fixed bottom" style="display: none">
 
 		<div class="unit whole">
 
@@ -127,6 +122,21 @@
 				<span id="spnStatus" class="info">Waiting for Login...</span>
 			</div>
 
+		</div>
+
+	</div>
+
+    <div class="unit half" style="display: none">
+
+		<div class="grid">
+			<div class="unit half">
+				<h5>Remote</h5>
+				<video id="vidRemote" width="256" height="256"></video>
+			</div>
+			<div class="unit half">
+				<h5>Local</h5>
+				<video id="vidLocal" width="128" height="128"></video>
+			</div>
 		</div>
 
 	</div>
@@ -144,4 +154,3 @@
 </body>
 
 </html>
-
