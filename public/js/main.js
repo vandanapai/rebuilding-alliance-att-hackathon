@@ -35,10 +35,12 @@ $(document).ready(function() {
 
 	function callLegislator(callee) {
 
+		var phoneNum = "1" + callee.replace(/-/g, "");
+
 		  // Dial the number or account id
 		  //
 		  phone.dial({
-		    destination: phone.cleanPhoneNumber(callee),
+		    destination: phone.cleanPhoneNumber(phoneNum),
 		    mediaType: 'video',
 		    localMedia: vidLocal,
 		    remoteMedia: vidRemote
