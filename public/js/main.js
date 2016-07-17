@@ -1,7 +1,15 @@
+window.logoutPhone = function()
+{
+	if (phone)
+		phone.logout();
+}
+
 $(document).ready(function() {
 
+	// phone.logout();
+
     setTimeout(function() {
-        createAccessToken("vp");
+        createAccessToken("acitizen1");
     }, 1000);
 
 	$('#userInformation').submit(function (event) {
@@ -19,6 +27,8 @@ $(document).ready(function() {
 				var legislators = results;
 				console.log(legislators);
 				$('#userDistrictNum').html(legislators.results[0].district);
+
+				$('#membersCongressList').html("");
 
 				for(var i = 0; i < legislators.results.length; i++) {
 

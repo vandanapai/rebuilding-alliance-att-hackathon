@@ -21,7 +21,7 @@
 	<title>Advocate - Calling Member of Congress</title>
 </head>
 
-<body>
+<body onbeforeunload="logoutPhone()">
 
 	<div class="mainContainer">
 
@@ -62,7 +62,8 @@
 
 						</div>
 						<div class="membersContainer">
-							<h4 id="membersCongressList">Your Members of Congress:</h4>
+							<h4>Your Members of Congress:</h4>
+							<div id="membersCongressList"></div>
 
 						</div>
 					</div>
